@@ -6,7 +6,8 @@ export const useBlocker = (blocker: () => void, when = true) => {
 
 		const handleBeforeUnload = (event: BeforeUnloadEvent) => {
 			event.preventDefault();
-			event.returnValue = ""; // これにより、ブラウザが警告ダイアログを表示します
+			event.returnValue =
+				"変更が保存されていません。ページを離れてもよろしいですか？"; // これにより、ブラウザが警告ダイアログを表示します
 			blocker();
 		};
 
