@@ -6,6 +6,7 @@ export const useBlocker = (blocker: () => void, when = true) => {
 
 		const handleBeforeUnload = (event: BeforeUnloadEvent) => {
 			event.preventDefault();
+			event.returnValue = ""; // これにより、ブラウザが警告ダイアログを表示します
 			blocker();
 		};
 
@@ -16,6 +17,7 @@ export const useBlocker = (blocker: () => void, when = true) => {
 				)
 			) {
 				e.preventDefault();
+				blocker();
 			}
 		};
 

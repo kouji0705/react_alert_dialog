@@ -1,3 +1,4 @@
+import type React from "react";
 import { useState } from "react";
 import { type SubmitHandler, useForm } from "react-hook-form";
 import { useBlocker } from "./hooks";
@@ -8,7 +9,7 @@ interface FormValues {
 
 export const Home: React.FC = () => {
 	const { register, handleSubmit, watch } = useForm<FormValues>();
-	const [isBlocked, setIsBlocked] = useState<boolean>(false);
+	const [isBlocked, setIsBlocked] = useState<boolean>(true);
 	const formValues = watch(); // フォームの値を監視
 
 	const onSubmit: SubmitHandler<FormValues> = (data) => {
@@ -26,7 +27,7 @@ export const Home: React.FC = () => {
 				<input
 					{...register("name", { required: true })}
 					placeholder="名前を入力"
-					onChange={() => setIsBlocked(false)}
+					onChange={() => setIsBlocked(true)} // フォームが変更されたらブロックを有効にする
 				/>
 				<button type="submit">保存</button>
 			</form>
